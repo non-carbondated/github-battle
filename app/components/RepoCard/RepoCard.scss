@@ -1,0 +1,55 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  width: 100%;
+  min-height: 120px;
+  font-size: 0.875rem;
+  color: #313131;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 8px 2px rgba(0, 0, 0, .25);
+  position: relative;
+	z-index: 0;
+	li {
+    display: flex;
+    align-items: center;
+		padding: 0 0 8px;
+  }
+  a {
+    font-size: 1rem;
+    transition: color .2s linear;
+    &:link,
+    &:visited {
+      color: #06c;
+      text-decoration: none;
+    }
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+}
+
+.avatar {
+  margin: auto 8px auto 0;
+  width: 100%;
+  height: auto;
+  max-width: 104px;
+  max-height: 104px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.description {
+  font-weight: 100;
+  line-height: 1.4;
+  color: #586069;
+}
