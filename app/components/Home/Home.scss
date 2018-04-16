@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  display: block;
+  margin: 8px auto;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 0;
+  width: 200px;
+  font-size: 16px;
+  color: #e6e6e6;
+  background: #0a0a0a;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover:enabled {
+    color: #fefefe;
+    background: linear-gradient(#1a1a1a, #0a0a0a);
+  }
+  &:active {
+    transform: translateY(1px);
+  }
+}

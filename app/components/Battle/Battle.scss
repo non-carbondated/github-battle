@@ -1,0 +1,109 @@
+.yuge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10rem;
+  position: relative;
+  overflow: hidden;
+  animation-delay: .65s;
+  animation-duration: .85s;
+  animation-fill-mode: both;
+  animation-name: kachow;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 80%;
+    height: 100%;
+    background: #d0021b;
+    transform: skew(-45deg);
+    position: absolute;
+    z-index: -1;
+    animation-delay: .5s;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-name: slidein;
+  }
+}
+
+//  https://codepen.io/maxakohler/pen/mAxHz
+@mixin long-shadow($type, $color, $length, $fadeout: true, $skew: false, $direction: right) {
+	$shadow: '';
+	@if $skew==false or $type==text {
+		@if $direction==right {
+			@for $i from 0 to $length - 1 {
+				$shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $color + ',';
+			}
+		}
+		@if $direction==left {
+			@for $i from 0 to $length - 1 {
+				$shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + $color + ',';
+			}
+		}
+	}
+	@if $fadeout==true {
+    $shadow: '';
+		@for $i from 1 to $length - 1 {
+			@if $type==text or $skew==false {
+				@if $direction==right {
+					$shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + rgba($color, 1 - $i / $length) + ',';
+				}
+				@if $direction==left {
+					$shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + rgba($color, 1 - $i / $length) + ',';
+				}
+			}
+			@if ($type==box) and $skew==true {
+				@if $direction==right {
+					$shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $i * .2 + 'px ' + rgba($color, 1 - $i / $length) + ',';
+				}
+				@if $direction==left {
+					$shadow: $shadow + $i * -1 + 'px ' + $i + 'px 0 ' + $i * .2 + 'px ' + rgba($color, 1 - $i / $length) + ',';
+				}
+			}
+		}
+		$shadow: $shadow+$length+'px '+$length+'px 0 '+rgba($color, 0);
+	}
+	@if $fadeout==false {
+		@if $skew==true and ( $type==box) {
+			@for $i from 0 to $length - 1 {
+				$shadow: $shadow + $i + 'px ' + $i + 'px 0 ' + $i * .1 + 'px ' + $color + ',';
+			}
+		}
+		$shadow: $shadow+$length+'px '+$length+'px 0 '+rgba(0, 0, 0, 0);
+	}
+	$shadow: unquote($shadow);
+	@if $type=='box' {
+		box-shadow: $shadow;
+	}
+	@if $type=='text' {
+		text-shadow: $shadow;
+	}
+}
+
+
+@keyframes kachow {
+  0% {
+    color: #333;
+  }
+  25% {
+    color: #fefefe;
+  }
+  75% {
+    text-shadow: 0 0 0 transparent;
+  }
+  100% {
+    color: #fefefe;
+    @include long-shadow($type: text, $color: darken(#d0021b, 15%), $length: 133, $fadeout: false, $skew: true, $direction: left);
+  }
+}
+
+@keyframes slidein {
+	from {
+		left: -100%;
+	}
+	to {
+		left: 10%;
+	}
+}
+
+
